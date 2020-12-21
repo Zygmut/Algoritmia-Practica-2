@@ -8,7 +8,8 @@ Así pues, el usuario **seleccionará inicialmente los tipos de piezas que se ti
 
 A continuación presentamos un ejemplo de solucion para un caso donde tenemos 5 reinas, 3 alfiles y una torre en un tablero 8x8
 
-![](https://imgur.com/a/JuVB5a4)
+![](https://i.imgur.com/hKPEzdH.png)
+
 **Figura 1:** Tablero de ejemplo
 
 ## Requerimientos
