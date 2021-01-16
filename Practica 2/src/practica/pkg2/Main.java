@@ -13,7 +13,7 @@ public class Main extends JFrame {
     Board board;
 
     public Main() {
-        this.board = new Board(5);
+        this.board = new Board(8);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
 
@@ -26,7 +26,7 @@ public class Main extends JFrame {
             @Override
             public void run() {
                 Main frame = new Main();
-                frame.setTitle("Ajedrez");
+                frame.setTitle("Practica 2: Las piezas que no se matan entre ellas");
                 frame.setResizable(false);
                 frame.setSize(frame.board.getPreferredSize());
                 frame.setLocationRelativeTo(null);
