@@ -2,6 +2,7 @@
  * Clase Principal del programa
  */
 package practica.pkg2;
+
 import javax.swing.JFrame;
 
 /**
@@ -20,8 +21,7 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        
-        
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -33,11 +33,15 @@ public class Main extends JFrame {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.getContentPane().add(frame.board);
                 frame.pack();
-                frame.setVisible(true);
                 
+
+                frame.setVisible(true);
+                frame.invalidate();
+                frame.revalidate();
+                frame.repaint();
+
             }
         });
     }
 
- 
 }

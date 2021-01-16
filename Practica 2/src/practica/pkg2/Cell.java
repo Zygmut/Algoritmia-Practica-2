@@ -61,8 +61,8 @@ public class Cell {
             case "pawn":
                 pawnMoveset(piecePosition);
                 break;
-            case "xxx":
-                xxxMoveset(piecePosition);
+            case "battletower":
+                battleTowerMoveset(piecePosition);
                 break;
         }
         return attackingTiles;
@@ -140,7 +140,9 @@ public class Cell {
             //     attackingTiles.add(temp);
             // }
             //
-            //Where the condition is true if there is any negative number within temp
+            // Where the condition is true if there is any negative number within temp
+            // Tho this is very interesting, a try catch might be a lot more faster 
+            // As we are working with error control and not array analysis shenannigans
             
             // \ line
             temp = new int[2];
@@ -170,16 +172,61 @@ public class Cell {
 
     private void knightMoveset(int[] piecePosition) {
         attackingTiles.clear();
+        int[] temp = new int[2];
+        for (int i = -2; i <= 2; i++) {
+            for (int j = -2; j <= 2; j++) {
+                if ((i != 0) && (j != 0)) {     
+                    if ((Math.abs(i) + Math.abs(j)) == 3) {
+                        temp = new int[2];
+                        temp[0] = piecePosition[0] + j;
+                        temp[1] = piecePosition[1] + i;
+                        attackingTiles.add(temp);
+                    }
+                }
+            }
+        }
 
     }
 
     private void pawnMoveset(int[] piecePosition) {
         attackingTiles.clear();
-
+        int[] temp = new int[2];
+        // left 
+        temp[0] = piecePosition[0] - 1;
+        temp[1] = piecePosition[1] - 1;
+        attackingTiles.add(temp);
+        
+        //right
+        temp = new int[2];
+        temp[0] = piecePosition[0] + 1;
+        temp[1] = piecePosition[1] - 1;
+        attackingTiles.add(temp);
     }
 
-    private void xxxMoveset(int[] piecePosition) {
+    private void battleTowerMoveset(int[] piecePosition) {
         attackingTiles.clear();
+        int[] temp;
+        for (int i = -2; i <= 2; i++) {         // y
+            if (Math.abs(i) == 2) {             // Bordes superior e inferior
+                for (int j = -2; j <= 2; j++) {     // x
+                    temp = new int[2];
+                    temp[0] = piecePosition[0] + j;
+                    temp[1] = piecePosition[1] + i;
+                    attackingTiles.add(temp);
+                }
+            } else {                            // Bordes laterales 
+                temp = new int[2];
+                temp[0] = piecePosition[0] - 2;
+                temp[1] = piecePosition[1] + i;
+                attackingTiles.add(temp);
+                
+                temp = new int[2];
+                temp[0] = piecePosition[0] + 2;
+                temp[1] = piecePosition[1] + i;
+                attackingTiles.add(temp);
+            }
+
+        }
 
     }
 

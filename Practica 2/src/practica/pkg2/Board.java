@@ -33,7 +33,7 @@ public class Board extends JPanel {
 
         cBoard = new Cell[Dim][Dim];
 
-         populate();
+        populate();
 
     }
 
@@ -45,9 +45,10 @@ public class Board extends JPanel {
         for (int i = 0, y = 0; i < Dim; i++, y+= Border) {      // Recorrido de la coordenada y, donde se utiliza "i" para medir la 
                                                                 // Dimension mientras mantenemos "y" para la coordenada de la imagen
             for (int j = 0, x = 0; j < Dim; j++, x += Border) { // Lo mismo aqui, pero con la "j" y "x", respectivamente
-                cBoard[i][j] = new Cell(new Piece(Piece.none, Border), x, y);
+                cBoard[i][j] = new Cell(new Piece(Piece.battletower, Border), x, y);
             }
         }
+        
     }
 
     /*
