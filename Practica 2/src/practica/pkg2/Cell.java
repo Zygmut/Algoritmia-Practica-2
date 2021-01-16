@@ -28,6 +28,8 @@ public class Cell {
         pos[1] = y;
         this.piece = piece;
     }
+    
+   
 
     /*
      * Returns an array with all the attacking positions this cell has, depending on
@@ -47,8 +49,8 @@ public class Cell {
             case "king":
                 kingMoveset(piecePosition);
                 break;
-            case "tower":
-                towerMoveset(piecePosition, boardDim);
+            case "rook":
+                rookMoveset(piecePosition, boardDim);
                 break;
             case "bishop":
                 bishopMoveset(piecePosition, boardDim);
@@ -79,27 +81,90 @@ public class Cell {
         }
     }
 
-    private void queenMoveset(int[] piecePosition, int boardDim) { 
+    private void queenMoveset(int[] piecePosition, int boardDim) {
         attackingTiles.clear();
         ArrayList temp = new ArrayList();
         bishopMoveset(piecePosition, boardDim);
         temp.addAll(attackingTiles);
 
-        towerMoveset(piecePosition, boardDim);
+        rookMoveset(piecePosition, boardDim);
         attackingTiles.addAll(temp);
     }
 
-    private void towerMoveset(int[] piecePosition, int boardDim) {
+    private void rookMoveset(int[] piecePosition, int boardDim) {
         attackingTiles.clear();
-        
-        
-        for (int i = 0; i < 10; i++) {
+        int[] temp = new int[2];
+        for (int i = 1; i < boardDim; i++) {
+            // If a vector has any negative number, is OUT OF BOUNDS. We could remove those 
+            // or just throw a try catch statement to try to acces that position in the matrix
+            // if it breaks, just skip that one
             
+            // Fucking end this. This is retarded
+            // left & right
+            temp = new int[2];
+            temp[0] = piecePosition[0] - i;
+            temp[1] = piecePosition[1];
+            attackingTiles.add(temp);
+
+            temp = new int[2];
+            temp[0] = piecePosition[0] + i;
+            temp[1] = piecePosition[1];
+            attackingTiles.add(temp);
+
+            // up & down
+            temp = new int[2];
+            temp[0] = piecePosition[0];
+            temp[1] = piecePosition[1] - i;
+            attackingTiles.add(temp);
+
+            temp = new int[2];
+            temp[0] = piecePosition[0];
+            temp[1] = piecePosition[1] + i;
+            attackingTiles.add(temp);
+   
         }
     }
 
     private void bishopMoveset(int[] piecePosition, int boardDim) {
         attackingTiles.clear();
+        int[] temp = new int[2];
+        for (int i = 1; i < boardDim; i++) {
+            // If a vector has any negative number, is OUT OF BOUNDS. We could remove those 
+            // or just throw a try catch statement to try to acces that position in the matrix
+            // if it breaks, just skip that one
+            // The solution of the first proposal might be the following code snippet
+            //
+            // if(Arrays.stream(temp).filter(h -> h < 0).toArray().length > 0){
+            //     System.out.println("yo, this is out of bounds");
+            // }else{
+            //     attackingTiles.add(temp);
+            // }
+            //
+            //Where the condition is true if there is any negative number within temp
+            
+            // \ line
+            temp = new int[2];
+            temp[0] = piecePosition[0] - i;
+            temp[1] = piecePosition[1] - i;
+            attackingTiles.add(temp);
+
+            temp = new int[2];
+            temp[0] = piecePosition[0] + i;
+            temp[1] = piecePosition[1] + i;
+            attackingTiles.add(temp);
+
+            // / line
+            temp = new int[2];
+            temp[0] = piecePosition[0] + i;
+            temp[1] = piecePosition[1] - i;
+            attackingTiles.add(temp);
+
+            temp = new int[2];
+            temp[0] = piecePosition[0] - i;
+            temp[1] = piecePosition[1] + i;
+            attackingTiles.add(temp);
+   
+        }
 
     }
 

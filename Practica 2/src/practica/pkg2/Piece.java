@@ -17,8 +17,9 @@ public class Piece {
     public static final String queen = "sprite/queen.png";
     public static final String bishop = "sprite/bishop.png";
     public static final String knight = "sprite/knight.png";
-    public static final String tower = "sprite/tower.png";
+    public static final String tower = "sprite/rook.png";
     public static final String pawn = "sprite/pawn.png";
+    public static final String none = "sprite/none.png";
 
     public Image img;
     private String id;
