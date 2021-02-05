@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class Bishop extends Piece {
 
-    public Bishop(String url) {
-        super("sprite/bishop.png", 1);
+    public Bishop() {
+        super("sprite/bishop.png");
     }
 
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {

@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public class BattleTower extends Piece {
 
-    public BattleTower(String url) {
-        super("sprite/battletower.png", 1);
+    public BattleTower() {
+        super("sprite/battletower.png");
     }
 
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition) {
