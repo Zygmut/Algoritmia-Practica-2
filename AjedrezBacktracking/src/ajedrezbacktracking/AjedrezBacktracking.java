@@ -20,10 +20,12 @@ public class AjedrezBacktracking {
     
     public static void main(String[] args) {
         new AjedrezBacktracking().begin();
+	  
     }
     
     public AjedrezBacktracking(){
         output = new GraphicDisplay();
+		output.mainMenu();
     }
     
     public void begin(){

@@ -5,14 +5,115 @@
  */
 package ajedrezbacktracking;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Daxmaster
  */
 public class GraphicDisplay {
-    
-    
-    public int[] mainMenu(){
+
+	int[] UserInput = new int[8];
+
+	public int[] mainMenu() {
+		JFrame MainMenu = new JFrame("Main Menu");
+		MainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		MainMenu.setSize(200, 300);
+		JPanel Panel = new JPanel();
+		JTextField QueenTextField = new JTextField("0", 2);
+		JTextField RookTextField = new JTextField("0", 2);
+		JTextField PawnTextField = new JTextField("0", 2);
+		JTextField BishopTextField = new JTextField("0", 2);
+		JTextField KnightTextField = new JTextField("0", 2);
+		JTextField KingTextField = new JTextField("0", 2);
+		JTextField BattleTowerTextField = new JTextField("0", 2);
+		JTextField SizeOfBoardTextField = new JTextField("1", 2);
+
+		JLabel QueenJlable2 = new JLabel("How many queens:");
+		JLabel RookJlable2 = new JLabel("How many rooks:");
+		JLabel PawnJlable2 = new JLabel("How many pawns:");
+		JLabel BishopJlable2 = new JLabel("How many bishops:");
+		JLabel KnightJlable2 = new JLabel("How many knights:");
+		JLabel KingJlable2 = new JLabel("How many kings:");
+		JLabel BattleTowerJlable2 = new JLabel("How many battle towers:");
+		JLabel SizeOfBoardJlable = new JLabel("Size of the board");
+
+		JButton Accept = new JButton("Accept");
+		Accept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
+
+				UserInput[0] = Integer.parseInt(SizeOfBoardTextField.getText());
+				UserInput[1] = Integer.parseInt(QueenTextField.getText());
+				UserInput[2] = Integer.parseInt(RookTextField.getText());
+				UserInput[3] = Integer.parseInt(BishopTextField.getText());
+				UserInput[4] = Integer.parseInt(BattleTowerTextField.getText());
+				UserInput[5] = Integer.parseInt(KnightTextField.getText());
+				UserInput[6] = Integer.parseInt(KingTextField.getText());
+				UserInput[7] = Integer.parseInt(PawnTextField.getText());
+				boolean Check_User = true;
+				for (int i = 0; i < 7 && Check_User; i++) {
+					if (UserInput[i] < 0) {
+                      Check_User=false;
+					  
+					}
+				}
+				if(Check_User){
+				MainMenu.setVisible(false);}
+
+			}
+		});
+
+		Panel.add(QueenJlable2);
+		Panel.add(QueenTextField);
+
+		Panel.add(RookJlable2);
+		Panel.add(RookTextField);
+
+		Panel.add(PawnJlable2);
+		Panel.add(PawnTextField);
+
+		Panel.add(BishopJlable2);
+		Panel.add(BishopTextField);
+
+		Panel.add(KnightJlable2);
+		Panel.add(KnightTextField);
+
+		Panel.add(KingJlable2);
+		Panel.add(KingTextField);
+
+		Panel.add(BattleTowerJlable2);
+		Panel.add(BattleTowerTextField);
+
+		Panel.add(SizeOfBoardJlable);
+		Panel.add(SizeOfBoardTextField);
+		Panel.add(Accept);
+
+		MainMenu.add(Panel);
+		MainMenu.setVisible(true);
+        MainMenu.setLocationRelativeTo(null);
+		while (MainMenu.isVisible() == true) {
+		}
+
+		return UserInput;
+
+	}
+	
+	public void Tablero(Board Tablero){
+	         
+        JFrame Window = new JFrame("Respuesta Final");
         
-    }
+        Window.getContentPane().add(Tablero);
+        Window.setSize(Tablero.getPreferredSize());
+        Window.pack();
+        Window.setResizable(false);
+		Window.setVisible(true);
+        Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 }
