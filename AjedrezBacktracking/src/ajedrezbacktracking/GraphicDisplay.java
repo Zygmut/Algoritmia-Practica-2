@@ -125,7 +125,7 @@ public class GraphicDisplay {
 				}
 				g.fillRect(j * Border, i * Border, Border, Border);
 				try{
-				Image img = new ImageIcon(Tablero[i][j].getImage).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
+				Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
                 g.drawImage(img, j * Border, i * Border, null);}catch(Exception e){}
 			}
 		}

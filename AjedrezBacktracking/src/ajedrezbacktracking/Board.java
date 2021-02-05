@@ -31,26 +31,26 @@ public class Board {
                 if (playBoard[x][y].isSafeSpot()) {
                     if (skip == 0) {
                         switch (piece) {
-                            case 0:
-                                playBoard[x][y].setPiece(new ); //necesita las clases de piezas
-                                break;
                             case 1:
-                                playBoard[x][y].setPiece(new );
+                                playBoard[x][y].setPiece(new Queen());
                                 break;
                             case 2:
-                                playBoard[x][y].setPiece(new );
+                                playBoard[x][y].setPiece(new Rook());
                                 break;
                             case 3:
-                                playBoard[x][y].setPiece(new );
+                                playBoard[x][y].setPiece(new Bishop());
                                 break;
                             case 4:
-                                playBoard[x][y].setPiece(new );
+                                playBoard[x][y].setPiece(new BattleTower());
                                 break;
                             case 5:
-                                playBoard[x][y].setPiece(new );
+                                playBoard[x][y].setPiece(new Knight());
                                 break;
                             case 6:
-                                playBoard[x][y].setPiece(new );
+                                playBoard[x][y].setPiece(new King());
+                                break;
+                            case 7:
+                                playBoard[x][y].setPiece(new Pawn());
                                 break;
                         }
                         if (isSafeToPlace(x, y)) {
@@ -67,10 +67,11 @@ public class Board {
     }
 
     private boolean isSafeToPlace(int x, int y) {
-        /*Arraylist supongo*/  = playBoard[x][y].//getAttackingTiles;
-        for (Cell iterator:/*Arraylist de arriba*/){
-            if (iterator.getPiece() != null) {
-                playBoard[x][y].setPiece(null); //quitamos la pieza nueva del tablero
+        int[] pos = {x, y};
+        ArrayList<int[]> attackingTiles = playBoard[x][y].getPiece().getAttackingTiles(pos);
+        for (int[] i: attackingTiles ){
+            if (playBoard[i[0]][i[1]].getPiece() != null) {
+                playBoard[i[0]][i[1]].setPiece(null); //quitamos la pieza nueva del tablero
                 return false;
             }
         }
@@ -95,4 +96,9 @@ public class Board {
     public int getHeight() {
         return height;
     }
+
+    public Cell[][] getPlayBoard() {
+        return playBoard;
+    }
+
 }

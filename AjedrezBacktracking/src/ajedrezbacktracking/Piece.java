@@ -26,4 +26,8 @@ public abstract class Piece {
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
         return null;
     }
+
+    public String getImageURL() {
+        return imageURL;
+    }
 }
