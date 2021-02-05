@@ -25,7 +25,6 @@ public class AjedrezBacktracking {
     
     public AjedrezBacktracking(){
         output = new GraphicDisplay();
-		output.mainMenu();
     }
     
     public void begin(){
