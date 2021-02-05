@@ -5,17 +5,25 @@
  */
 package ajedrezbacktracking;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Daxmaster
  */
-public class Piece {
-    private final String image;
-    private final int value;
-    
-    public Piece(String url, int value){
-        image = url;
-        this.value = value;
+public abstract class Piece {
+
+    private final String imageURL;
+
+    public Piece(String url) {
+        imageURL = url;
+    }
+
+    public ArrayList<int[]> getAttackingTiles(int[] piecePosition) {
+        return null;
     }
     
+    public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
+        return null;
+    }
 }

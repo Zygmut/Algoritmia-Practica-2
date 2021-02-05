@@ -11,23 +11,27 @@ import java.util.ArrayList;
  *
  * @author Daxmaster
  */
-public class King extends Piece {
+public class Pawn extends Piece {
 
-    public King() {
-        super("sprite/king.png");
+    public Pawn() {
+        super("sprite/pawn.png");
     }
 
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition) {
         ArrayList<int[]> attackingTiles = new ArrayList<>();
 
-        for (int i = -1; i < 2; i++) { // y
-            for (int j = -1; j < 2; j++) { // x
-                if ((j != 0) && (i != 0)) { // I want to avoid problems like " he can kill himself"
-                    int[] temp = {piecePosition[0] + i, piecePosition[1] + j};
-                    attackingTiles.add(temp);
-                }
-            }
-        }
+       int[] temp = new int[2];
+        // left 
+        temp[0] = piecePosition[0] - 1;
+        temp[1] = piecePosition[1] - 1;
+        attackingTiles.add(temp);
+        
+        //right
+        temp = new int[2];
+        temp[0] = piecePosition[0] + 1;
+        temp[1] = piecePosition[1] - 1;
+        attackingTiles.add(temp);
+        
         return attackingTiles;
     }
 }
