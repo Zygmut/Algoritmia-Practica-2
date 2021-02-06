@@ -53,6 +53,7 @@ public class Board {
                                 playBoard[x][y].setPiece(new BattleTower());
                                 break;
                             case 4:
+                                System.out.println("Creo un caballo");
                                 playBoard[x][y].setPiece(new Knight());
                                 break;
                             case 5:
@@ -83,6 +84,7 @@ public class Board {
             try{
             if (playBoard[i[0]][i[1]].getPiece() != null) {
                 playBoard[x][y].setPiece(null); //quitamos la pieza nueva del tablero
+                System.out.println("Está atacando a alguien: " + i[0]+", "+i[1]);
                 return false;
             }
             }catch(ArrayIndexOutOfBoundsException e){
@@ -95,6 +97,7 @@ public class Board {
 //                return false;
 //            }
 //        }
+        System.out.println("No ataca a nadie, se modifican las presiones");
         modifyPressure(attackingTiles, true);
         return true;
     }
@@ -103,9 +106,13 @@ public class Board {
         if (movementHistory.isEmpty()) {
             return false;
         }
+        System.out.println("Vamos a eliminar la ultima pieza");
         Cell aux = movementHistory.get(movementHistory.size() - 1);
-        ArrayList<int[]> attackingTiles = aux.getPiece().getAttackingTiles(aux.getPosition());
+        System.out.println(aux.getPiece().getImageURL());
+        ArrayList<int[]> attackingTiles = aux.getPiece().getAttackingTiles(aux.getPosition(), height);
+        //System.out.println(attackingTiles.isEmpty());
         modifyPressure(attackingTiles, false);
+        movementHistory.get(movementHistory.size() - 1).setPiece(null);
         movementHistory.remove(movementHistory.size() - 1);
         return true;
     }

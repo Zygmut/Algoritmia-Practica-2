@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -123,6 +125,8 @@ public class GraphicDisplay extends JPanel {
         Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Window.setLocationRelativeTo(null);
         Window.add(this);
+        Window.invalidate();
+        Window.revalidate();
         Window.repaint();
         //Graphics g = new SunGraphics2D(null, null, null, null);
     }
@@ -138,7 +142,11 @@ public class GraphicDisplay extends JPanel {
                     g.setColor(new Color(166, 126, 91));
                 }
                 g.fillRect(j * Border, i * Border, Border, Border);
-                drawImage(g, i, j, Border);
+                try {
+                    Image img = ImageIO.read(new File(Tablero.getPlayBoard()[i][j].getPiece().getImageURL())).getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
+                    g.drawImage(img, (int) j * Border, (int) i * Border, null);
+                } catch (Exception e) {
+                }
 //                try {
 //                    System.out.println(Tablero.getPlayBoard()[i][j].getPiece().getImageURL());
 //                    Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
@@ -146,15 +154,6 @@ public class GraphicDisplay extends JPanel {
 //                } catch (Exception e) {
 //                }
             }
-        }
-    }
-
-    private void drawImage(Graphics g, int i, int j, int Border) {
-        try {
-            System.out.println(Tablero.getPlayBoard()[i][j].getPiece().getImageURL());
-            Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
-            g.drawImage(img, (int) j * Border, (int) i * Border, null);
-        } catch (Exception e) {
         }
     }
 }

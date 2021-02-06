@@ -37,11 +37,14 @@ public class AjedrezBacktracking {
         System.out.println("Entramos en el algoritmo");
         if(backtracking(pieces)){
             System.out.println("Solución encontrada");
+             output.Tablero(board);
+        }else{
+            System.out.println("No se ha encontrado solución");
+            //output.Failure();
         }
         
         //backend
         //display
-        output.Tablero(board);
         //graphics
     }
 
@@ -64,6 +67,7 @@ public class AjedrezBacktracking {
                         } //las siguientes llamadas no consiguen poner pieza, por lo que se tiene que buscar otra casilla para la pieza que fue colocada
                         board.removeLastPiece();
                     } else { //no se ha conseguido poner la pieza
+                        pieces[i]++;
                         return false;
                     }
                 }
