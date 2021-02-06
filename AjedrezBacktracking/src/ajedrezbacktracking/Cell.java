@@ -11,11 +11,17 @@ package ajedrezbacktracking;
  */
 public class Cell {
     private Piece piece;
-    private boolean safeSpot;
+    private int pressureOnSpot;
+    private final int[] position;
     
-    public Cell(){
-        safeSpot = true;
+    public Cell(int[] position){
+        pressureOnSpot = 0;
         piece = null;
+        this.position = position;
+    }
+
+    public int[] getPosition() {
+        return position;
     }
 
     public Piece getPiece() {
@@ -26,12 +32,20 @@ public class Cell {
         this.piece = piece;
     }
 
-    public boolean isSafeSpot() {
-        return safeSpot;
+    public int getPressureLevel() {
+        return pressureOnSpot;
     }
 
-    public void setSafeSpot(boolean safeSpot) {
-        this.safeSpot = safeSpot;
+    public void setPressure(int pressureOnSpot) {
+        this.pressureOnSpot = pressureOnSpot;
+    }
+    
+    public void modifyPressure (boolean add){
+        if(add){
+            pressureOnSpot++;
+        }else{
+            pressureOnSpot--;
+        }
     }
     
     

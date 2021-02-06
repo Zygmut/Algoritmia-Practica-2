@@ -28,7 +28,7 @@ public class Board {
     public boolean putPiece(int piece, int skip) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (playBoard[x][y].isSafeSpot()) {
+                if (playBoard[x][y].getPressureLevel() == 0) {
                     if (skip == 0) {
                         switch (piece) {
                             case 1:
@@ -71,10 +71,11 @@ public class Board {
         ArrayList<int[]> attackingTiles = playBoard[x][y].getPiece().getAttackingTiles(pos);
         for (int[] i: attackingTiles ){
             if (playBoard[i[0]][i[1]].getPiece() != null) {
-                playBoard[i[0]][i[1]].setPiece(null); //quitamos la pieza nueva del tablero
+                playBoard[x][y].setPiece(null); //quitamos la pieza nueva del tablero
                 return false;
             }
         }
+        modifyPressure(attackingTiles, false);
         return true;
     }
 
@@ -82,13 +83,19 @@ public class Board {
         if (movementHistory.isEmpty()) {
             return false;
         }
+        Cell aux = movementHistory.get(movementHistory.size() - 1);
+        ArrayList<int[]> attackingTiles = aux.getPiece().getAttackingTiles(aux.getPosition());
+        modifyPressure(attackingTiles, true);
         movementHistory.remove(movementHistory.size() - 1);
         return true;
     }
+    
+    private void modifyPressure(ArrayList<int[]> attackingTiles, boolean security){
+        for(int[] iterator : attackingTiles){
+            playBoard[iterator[0]][iterator[1]].modifyPressure(security);
+        }
+    }
 
-//    public void move(){
-//        
-//    }
     public int getWidth() {
         return width;
     }
