@@ -20,6 +20,12 @@ public class Board {
 
     public Board(int width, int height) {
         playBoard = new Cell[width][height];
+        for(int i = 0 ; i < width ; i++){
+            for(int j = 0 ; j < height ; j++){
+                int[] position = {i, j};
+                playBoard[i][j] = new Cell(position);
+            }
+        }
         movementHistory = new ArrayList<>();
         this.width = width;
         this.height = height;
@@ -31,25 +37,26 @@ public class Board {
                 if (playBoard[x][y].getPressureLevel() == 0) {
                     if (skip == 0) {
                         switch (piece) {
-                            case 1:
+                            case 0:
+                                System.out.println("Creo una reina");
                                 playBoard[x][y].setPiece(new Queen());
                                 break;
-                            case 2:
+                            case 1:
                                 playBoard[x][y].setPiece(new Rook());
                                 break;
-                            case 3:
+                            case 2:
                                 playBoard[x][y].setPiece(new Bishop());
                                 break;
-                            case 4:
+                            case 3:
                                 playBoard[x][y].setPiece(new BattleTower());
                                 break;
-                            case 5:
+                            case 4:
                                 playBoard[x][y].setPiece(new Knight());
                                 break;
-                            case 6:
+                            case 5:
                                 playBoard[x][y].setPiece(new King());
                                 break;
-                            case 7:
+                            case 6:
                                 playBoard[x][y].setPiece(new Pawn());
                                 break;
                         }
@@ -68,6 +75,11 @@ public class Board {
 
     private boolean isSafeToPlace(int x, int y) {
         int[] pos = {x, y};
+        Piece aux = playBoard[x][y].getPiece();
+        if(aux == null){
+            System.out.println("Pos soy null bro");
+        }
+        System.out.println("Hola buenas");
         ArrayList<int[]> attackingTiles = playBoard[x][y].getPiece().getAttackingTiles(pos);
         for (int[] i: attackingTiles ){
             if (playBoard[i[0]][i[1]].getPiece() != null) {

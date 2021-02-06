@@ -104,7 +104,9 @@ public class GraphicDisplay {
 		MainMenu.setVisible(true);
 		MainMenu.setLocationRelativeTo(null);
 		while (MainMenu.isVisible() == true) {
+                    System.out.println("Alo policia aiuda");
 		}
+                System.out.println("Hasta adioh");
 
 		return UserInput;
 
