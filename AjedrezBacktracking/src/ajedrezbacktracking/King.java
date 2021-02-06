@@ -23,7 +23,8 @@ public class King extends Piece {
 
         for (int i = -1; i < 2; i++) { // y
             for (int j = -1; j < 2; j++) { // x
-                if ((j != 0) && (i != 0)) { // I want to avoid problems like " he can kill himself"
+                System.out.println(i + " " + j);
+                if ( !((j == 0) && (i == 0)))  { // I want to avoid problems like " he can kill himself"
                     int[] temp = {piecePosition[0] + i, piecePosition[1] + j};
                     attackingTiles.add(temp);
                 }
