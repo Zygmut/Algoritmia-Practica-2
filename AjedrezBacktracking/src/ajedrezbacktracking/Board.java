@@ -6,6 +6,7 @@
 package ajedrezbacktracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Board {
     public boolean putPiece(int piece, int skip) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if (playBoard[x][y].getPressureLevel() == 0) {
+                if (playBoard[x][y].getPressureLevel() == 0 && playBoard[x][y].getPiece() == null) {
                     if (skip == 0) {
                         switch (piece) {
                             case 0:
@@ -42,6 +43,7 @@ public class Board {
                                 playBoard[x][y].setPiece(new Queen());
                                 break;
                             case 1:
+                                System.out.println("Creo una torre");
                                 playBoard[x][y].setPiece(new Rook());
                                 break;
                             case 2:
@@ -60,8 +62,9 @@ public class Board {
                                 playBoard[x][y].setPiece(new Pawn());
                                 break;
                         }
-                        if (isSafeToPlace(x, y)) {
+                        if (isNotAttacking(x, y)) {
                             movementHistory.add(playBoard[x][y]);
+                            System.out.println("Coordenadas de la pieza: "+x+", "+y);
                             return true;
                         }
                     } else {
@@ -73,17 +76,26 @@ public class Board {
         return false;
     }
 
-    private boolean isSafeToPlace(int x, int y) {
-        int[] pos = {x, y};        
-        ArrayList<int[]> attackingTiles = playBoard[x][y].getPiece().getAttackingTiles(pos);
-        System.out.println(attackingTiles.isEmpty());
+    private boolean isNotAttacking(int x, int y) {
+        int[] pos = {x, y}; 
+        ArrayList<int[]> attackingTiles = playBoard[x][y].getPiece().getAttackingTiles(pos, height);
         for (int[] i: attackingTiles ){ //aqui salta nullpointer
+            try{
             if (playBoard[i[0]][i[1]].getPiece() != null) {
                 playBoard[x][y].setPiece(null); //quitamos la pieza nueva del tablero
                 return false;
             }
+            }catch(ArrayIndexOutOfBoundsException e){
+                //System.out.println(e.getLocalizedMessage());
+            }
         }
-        modifyPressure(attackingTiles, false);
+//        for(int i = 0 ; i < attackingTiles.size() ; i++){
+//            if(playBoard[attackingTiles.get(i)[0]][attackingTiles.get(i)[1]] != null){
+//                playBoard[x][y].setPiece(null); //quitamos la pieza nueva del tablero
+//                return false;
+//            }
+//        }
+        modifyPressure(attackingTiles, true);
         return true;
     }
 
@@ -93,14 +105,18 @@ public class Board {
         }
         Cell aux = movementHistory.get(movementHistory.size() - 1);
         ArrayList<int[]> attackingTiles = aux.getPiece().getAttackingTiles(aux.getPosition());
-        modifyPressure(attackingTiles, true);
+        modifyPressure(attackingTiles, false);
         movementHistory.remove(movementHistory.size() - 1);
         return true;
     }
     
     private void modifyPressure(ArrayList<int[]> attackingTiles, boolean security){
         for(int[] iterator : attackingTiles){
+            try{
             playBoard[iterator[0]][iterator[1]].modifyPressure(security);
+            }catch(ArrayIndexOutOfBoundsException e){
+                //System.out.println(e.getLocalizedMessage());
+            }
         }
     }
 

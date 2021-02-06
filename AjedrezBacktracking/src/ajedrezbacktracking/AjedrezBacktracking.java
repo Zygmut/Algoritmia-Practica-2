@@ -35,7 +35,10 @@ public class AjedrezBacktracking {
         int pieces[] = getSliceOfArray(input, 1, input.length);
         //call to the algorithm
         System.out.println("Entramos en el algoritmo");
-        backtracking(pieces);
+        if(backtracking(pieces)){
+            System.out.println("Solución encontrada");
+        }
+        
         //backend
         //display
         output.Tablero(board);
