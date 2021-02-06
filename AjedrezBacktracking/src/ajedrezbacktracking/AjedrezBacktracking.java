@@ -5,6 +5,8 @@
  */
 package ajedrezbacktracking;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Daxmaster
@@ -24,6 +26,7 @@ public class AjedrezBacktracking {
 
     public AjedrezBacktracking() {
         output = new GraphicDisplay();
+		
     }
 
     public void begin() {
@@ -36,7 +39,10 @@ public class AjedrezBacktracking {
             System.out.println("Solución encontrada");
              output.Tablero(board);
         }else{
+			
             System.out.println("No se ha encontrado solución");
+			JOptionPane.showMessageDialog(null, "No se ha encontrado solución", "Shark Mentality", JOptionPane.PLAIN_MESSAGE);
+			 System.exit(0); 
             //output.Failure();
         }
         
