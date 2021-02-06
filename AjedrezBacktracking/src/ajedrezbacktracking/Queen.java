@@ -17,6 +17,7 @@ public class Queen extends Piece {
         super("sprite/queen.png");
     }
 
+    @Override
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
         ArrayList<int[]> attackingTiles = new ArrayList<>();
         ArrayList tempCopy = new ArrayList();

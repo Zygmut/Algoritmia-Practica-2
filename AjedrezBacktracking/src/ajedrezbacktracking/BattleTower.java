@@ -17,6 +17,7 @@ public class BattleTower extends Piece {
         super("sprite/battletower.png");
     }
 
+    @Override
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
         ArrayList<int[]> attackingTiles = new ArrayList<>();
 

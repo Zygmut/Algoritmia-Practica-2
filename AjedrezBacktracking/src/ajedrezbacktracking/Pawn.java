@@ -17,6 +17,7 @@ public class Pawn extends Piece {
         super("sprite/pawn.png");
     }
 
+    @Override
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
         ArrayList<int[]> attackingTiles = new ArrayList<>();
 

@@ -17,6 +17,7 @@ public class Bishop extends Piece {
         super("sprite/bishop.png");
     }
 
+    @Override
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
         ArrayList<int[]> attackingTiles = new ArrayList<>();
 

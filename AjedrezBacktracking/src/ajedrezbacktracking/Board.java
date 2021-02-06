@@ -74,14 +74,10 @@ public class Board {
     }
 
     private boolean isSafeToPlace(int x, int y) {
-        int[] pos = {x, y};
-        Piece aux = playBoard[x][y].getPiece();
-        if(aux == null){
-            System.out.println("Pos soy null bro");
-        }
-        System.out.println("Hola buenas");
+        int[] pos = {x, y};        
         ArrayList<int[]> attackingTiles = playBoard[x][y].getPiece().getAttackingTiles(pos);
-        for (int[] i: attackingTiles ){
+        System.out.println(attackingTiles.isEmpty());
+        for (int[] i: attackingTiles ){ //aqui salta nullpointer
             if (playBoard[i[0]][i[1]].getPiece() != null) {
                 playBoard[x][y].setPiece(null); //quitamos la pieza nueva del tablero
                 return false;

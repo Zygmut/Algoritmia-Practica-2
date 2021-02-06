@@ -17,6 +17,7 @@ public class King extends Piece {
         super("sprite/king.png");
     }
 
+    @Override
     public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
         ArrayList<int[]> attackingTiles = new ArrayList<>();
 
