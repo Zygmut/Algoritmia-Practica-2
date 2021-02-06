@@ -23,9 +23,6 @@ public class Rook extends Piece {
 
         int[] temp = new int[2];
         for (int i = 1; i < boardDim; i++) {
-            // If a vector has any negative number, is OUT OF BOUNDS. We could remove those 
-            // or just throw a try catch statement to try to acces that position in the matrix
-            // if it breaks, just skip that one
 
             // Fucking end this. This is retarded
             // left & right

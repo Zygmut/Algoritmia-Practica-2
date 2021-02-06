@@ -6,7 +6,6 @@
 package ajedrezbacktracking;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  *
@@ -83,7 +82,6 @@ public class Board {
                 return false;
             }
             }catch(ArrayIndexOutOfBoundsException e){
-                //System.out.println(e.getLocalizedMessage());
             }
         }
         modifyPressure(attackingTiles, true);
@@ -107,7 +105,6 @@ public class Board {
             try{
             playBoard[iterator[0]][iterator[1]].modifyPressure(security);
             }catch(ArrayIndexOutOfBoundsException e){
-                //System.out.println(e.getLocalizedMessage());
             }
         }
     }

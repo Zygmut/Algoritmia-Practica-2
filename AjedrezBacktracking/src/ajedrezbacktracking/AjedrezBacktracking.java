@@ -27,14 +27,11 @@ public class AjedrezBacktracking {
     }
 
     public void begin() {
-        //main menu launch
-        //graphics
         int input[] = output.mainMenu();
         //devolverá un array de ints, donde cada int representa la cantidad de una cierta pieza
         board = new Board(input[0], input[0]);
         int pieces[] = getSliceOfArray(input, 1, input.length);
         //call to the algorithm
-        System.out.println("Entramos en el algoritmo");
         if(backtracking(pieces)){
             System.out.println("Solución encontrada");
              output.Tablero(board);
@@ -43,9 +40,6 @@ public class AjedrezBacktracking {
             //output.Failure();
         }
         
-        //backend
-        //display
-        //graphics
     }
 
     public int[] getSliceOfArray(int[] arr, int start, int end) {

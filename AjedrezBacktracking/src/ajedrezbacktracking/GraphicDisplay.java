@@ -7,18 +7,15 @@ package ajedrezbacktracking;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -107,9 +104,8 @@ public class GraphicDisplay extends JPanel {
         MainMenu.setVisible(true);
         MainMenu.setLocationRelativeTo(null);
         while (MainMenu.isVisible() == true) {
-            System.out.println("Alo policia aiuda");
+            System.out.println("");
         }
-        System.out.println("Hasta adioh");
 
         return UserInput;
 
@@ -128,7 +124,6 @@ public class GraphicDisplay extends JPanel {
         Window.invalidate();
         Window.revalidate();
         Window.repaint();
-        //Graphics g = new SunGraphics2D(null, null, null, null);
     }
 
     @Override
@@ -147,12 +142,6 @@ public class GraphicDisplay extends JPanel {
                     g.drawImage(img, (int) j * Border, (int) i * Border, null);
                 } catch (Exception e) {
                 }
-//                try {
-//                    System.out.println(Tablero.getPlayBoard()[i][j].getPiece().getImageURL());
-//                    Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
-//                    g.drawImage(img, (int) j * Border, (int) i * Border, null);
-//                } catch (Exception e) {
-//                }
             }
         }
     }
