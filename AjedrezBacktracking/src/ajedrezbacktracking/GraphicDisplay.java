@@ -133,18 +133,28 @@ public class GraphicDisplay extends JPanel {
         for (int i = 0; i < Tablero.getHeight(); i++) {
             for (int j = 0; j < Tablero.getWidth(); j++) {
                 if ((i + j) % 2 == 0) {
-                    //g.setColor(new Color(227, 206, 167));
+                    g.setColor(new Color(227, 206, 167));
                 } else {
-                    //g.setColor(new Color(166, 126, 91));
+                    g.setColor(new Color(166, 126, 91));
                 }
-                //g.fillRect(j * Border, i * Border, Border, Border);
-                try {
-                    System.out.println(Tablero.getPlayBoard()[i][j].getPiece().getImageURL());
-                    Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
-                    g.drawImage(img,(int) j * Border,(int) i * Border, null);
-                } catch (Exception e) {
-                }
+                g.fillRect(j * Border, i * Border, Border, Border);
+                drawImage(g, i, j, Border);
+//                try {
+//                    System.out.println(Tablero.getPlayBoard()[i][j].getPiece().getImageURL());
+//                    Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
+//                    g.drawImage(img, (int) j * Border, (int) i * Border, null);
+//                } catch (Exception e) {
+//                }
             }
+        }
+    }
+
+    private void drawImage(Graphics g, int i, int j, int Border) {
+        try {
+            System.out.println(Tablero.getPlayBoard()[i][j].getPiece().getImageURL());
+            Image img = new ImageIcon(Tablero.getPlayBoard()[i][j].getPiece().getImageURL()).getImage().getScaledInstance(Border, Border, java.awt.Image.SCALE_DEFAULT);
+            g.drawImage(img, (int) j * Border, (int) i * Border, null);
+        } catch (Exception e) {
         }
     }
 }
