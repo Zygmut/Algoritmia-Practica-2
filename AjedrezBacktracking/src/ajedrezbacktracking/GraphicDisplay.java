@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -124,6 +125,10 @@ public class GraphicDisplay extends JPanel {
         Window.invalidate();
         Window.revalidate();
         Window.repaint();
+    }
+    
+    public void failure(){
+        JOptionPane.showMessageDialog(null, "No se ha encontrado solución", "Shark Mentality", JOptionPane.PLAIN_MESSAGE);
     }
 
     @Override

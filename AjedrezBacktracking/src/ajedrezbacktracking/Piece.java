@@ -19,11 +19,11 @@ public abstract class Piece {
         imageURL = url;
     }
 
-    public ArrayList<int[]> getAttackingTiles(int[] piecePosition) {
+    public ArrayList<int[]> getAttackingTiles(int[] piecePosition) { //método que devuelve todas las posiciones que ataca la pieza desde una posición pasada por parámetro
         return null;
     }
     
-    public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) {
+    public ArrayList<int[]> getAttackingTiles(int[] piecePosition, int boardDim) { //método que devuelve todas las posiciones que ataca la pieza desde una posición pasada por parámetro
         return null;
     }
 

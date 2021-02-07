@@ -10,9 +10,9 @@ package ajedrezbacktracking;
  * @author Daxmaster
  */
 public class Cell {
-    private Piece piece;
-    private int pressureOnSpot;
-    private final int[] position;
+    private Piece piece; //la pieza que ocupa esta casilla
+    private int pressureOnSpot; //la presion que sufre esta casilla. 0 significa libre de presion; mayor a 0 significa que hay al menos 1 atacante
+    private final int[] position; //coordenadas de la casilla en el tablero
     
     public Cell(int[] position){
         pressureOnSpot = 0;
@@ -36,11 +36,11 @@ public class Cell {
         return pressureOnSpot;
     }
 
-    public void setPressure(int pressureOnSpot) {
+    public void setPressure(int pressureOnSpot) { //por si se quisiese resetear la presión
         this.pressureOnSpot = pressureOnSpot;
     }
     
-    public void modifyPressure (boolean add){
+    public void modifyPressure (boolean add){ //incrementa o decrementa la presion en la casilla 
         if(add){
             pressureOnSpot++;
         }else{

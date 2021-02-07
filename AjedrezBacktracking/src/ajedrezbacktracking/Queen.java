@@ -52,7 +52,6 @@ public class Queen extends Piece {
         temp = new int[2];
         for (int i = 1; i < boardDim; i++) {
             
-            // Fucking end this. This is retarded
             // left & right
             temp = new int[2];
             temp[0] = piecePosition[0] - i;

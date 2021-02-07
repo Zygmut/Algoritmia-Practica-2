@@ -5,7 +5,6 @@
  */
 package ajedrezbacktracking;
 
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +25,7 @@ public class AjedrezBacktracking {
 
     public AjedrezBacktracking() {
         output = new GraphicDisplay();
-		
+
     }
 
     public void begin() {
@@ -35,20 +34,16 @@ public class AjedrezBacktracking {
         board = new Board(input[0], input[0]);
         int pieces[] = getSliceOfArray(input, 1, input.length);
         //call to the algorithm
-        if(backtracking(pieces)){
-            System.out.println("Solución encontrada");
-             output.Tablero(board);
-        }else{
-			
-            System.out.println("No se ha encontrado solución");
-			JOptionPane.showMessageDialog(null, "No se ha encontrado solución", "Shark Mentality", JOptionPane.PLAIN_MESSAGE);
-			 System.exit(0); 
-            //output.Failure();
+        if (backtracking(pieces)) {
+            output.Tablero(board);
+        } else {
+            output.failure();
+            System.exit(0);
         }
-        
+
     }
 
-    public int[] getSliceOfArray(int[] arr, int start, int end) {
+    public int[] getSliceOfArray(int[] arr, int start, int end) { //devuelve el trozo deseado de un array
         int[] slice = new int[end - start];
         for (int i = 0; i < slice.length; i++) {
             slice[i] = arr[start + i];
@@ -62,12 +57,12 @@ public class AjedrezBacktracking {
                 pieces[i]--;
                 for (int j = 0; j < board.getHeight() + board.getWidth(); j++) { //este for asegura que, en caso de fallo al poner la pieza, se revisen las demás casillas hasta la totalidad del tablero
                     if (board.putPiece(i, j)) { //se ha conseguido poner la pieza
-                        if(backtracking(pieces)){ //las siguientes llamadas consiguen poner pieza
+                        if (backtracking(pieces)) { //las siguientes llamadas consiguen poner pieza
                             return true;
                         } //las siguientes llamadas no consiguen poner pieza, por lo que se tiene que buscar otra casilla para la pieza que fue colocada
                         board.removeLastPiece();
                     } else { //no se ha conseguido poner la pieza
-                        pieces[i]++;
+                        pieces[i]++; //deja la pieza en el array de nuevo para que quede pendiente en futuras iteraciones
                         return false;
                     }
                 }
