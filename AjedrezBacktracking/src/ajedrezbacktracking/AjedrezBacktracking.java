@@ -55,17 +55,18 @@ public class AjedrezBacktracking {
         for (int i = 0; i < pieces.length; i++) { //este for solo funciona hasta que se encuentra una pieza que se deba poner
             if (pieces[i] != 0) {
                 pieces[i]--;
-                for (int j = 0; j < board.getHeight() + board.getWidth(); j++) { //este for asegura que, en caso de fallo al poner la pieza, se revisen las demás casillas hasta la totalidad del tablero
+                for (int j = 0; j < board.getHeight() * board.getWidth(); j++) { //este for asegura que, en caso de fallo al poner la pieza, se revisen las demás casillas hasta la totalidad del tablero
                     if (board.putPiece(i, j)) { //se ha conseguido poner la pieza
                         if (backtracking(pieces)) { //las siguientes llamadas consiguen poner pieza
                             return true;
                         } //las siguientes llamadas no consiguen poner pieza, por lo que se tiene que buscar otra casilla para la pieza que fue colocada
                         board.removeLastPiece();
                     } else { //no se ha conseguido poner la pieza
-                        pieces[i]++; //deja la pieza en el array de nuevo para que quede pendiente en futuras iteraciones
+                        pieces[i]++; //deja la pieza en el array de piezas para que quede pendiente en futuras iteraciones
                         return false;
                     }
                 }
+                //pieces[i]++;
                 return false; //a este caso solo llega la primera llamada del método, donde despues de probar en todo el tablero sin conseguir que funcione se sale del bucle sin más
             }
         }
